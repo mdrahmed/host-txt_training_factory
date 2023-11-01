@@ -21,31 +21,7 @@
 
 const std::string SERVER_ADDRESS("tcp://localhost:1883");
 const std::string CLIENT_ID("mqtt_cpp_async_subscriber");
-const std::string TOPIC("my/topic");
-
-//class mqtt_callback : public virtual mqtt::callback
-//{
-//public:
-//    void connection_lost(const std::string& cause) override {
-//        std::cout << "\nConnection lost" << std::endl;
-//        if (!cause.empty())
-//            std::cout << "cause: " << cause << std::endl;
-//    }
-//
-//    void delivery_complete(mqtt::delivery_token_ptr token) override {
-//        std::cout << "\nDelivery complete for token: "
-//                  << (token ? token->get_message_id() : -1) << std::endl;
-//    }
-//
-//    void message_arrived(mqtt::const_message_ptr msg) override {
-//    //std::cout << "msg topic addr: " << &msg->get_topic() << std::endl;
-//    //printf("Topic from src: %s\n", msg->get_topic().c_str()); 
-//    //printf("Message Content Length: %lu\n", msg->get_payload().length());        
-//    //std::cout << "Message received on topic: " << msg->get_topic() << std::endl;
-//        std::cout << "Message content: " << msg->to_string() << std::endl;
-//		ft::run();
-//    }
-//};
+const std::string TOPIC("fl/vgr/do");
 
 
 
@@ -103,8 +79,14 @@ public:
     //printf("Message Content Length: %lu\n", msg->get_payload().length());        
     //std::cout << "Message received on topic: " << msg->get_topic() << std::endl;
         std::cout << "Message content: " << msg->to_string() << std::endl;
-		//ft::run();
-		run();	
+		//run();	
+
+		if(msg->to_string() == "BLUE"){
+			std::cout<<"BLUE workpiece ordered\n";
+			char newState = 'F';
+			//FSM_TRANSITION( newState, color=green, label='req\nquit' );
+			fsmStep(newState);	
+		}
     }
 //};
 
@@ -117,15 +99,17 @@ enum State {
 };
 
 // void TxtHighBayWarehouse::fsmStep()
-void fsmStep()
+void fsmStep(char currentState)
 {
 	std::cout << "fsmStep" << std::endl;
 	//spdloG_LOGGER_TRACE(spdlog::get("console"), "fsmStep",0);
-	char newState, currentState;
+	char newState;
 	// std::cout<<"Enter new state: ";
 	// std::cin >> newState;
-	std::cout<<"Current state: ";
-	std::cin >> currentState;
+	std::cout<<"Current state is: "<<currentState << std::endl;
+	if(currentState != 'F'){
+		std::cin >> currentState;
+	}
 
 // 	// Entry activities ===================================================
 	// if( newState != currentState )
@@ -487,7 +471,7 @@ void moveCalibPos()
 void run()
 {
 	std::cout<<"run" << std::endl;
-	fsmStep();
+	fsmStep('U');
 	// //spdloG_LOGGER_TRACE(spdlog::get("console"), "run",0);
 	// assert(mqttclient);
 	// obs_hbw = new TxtHighBayWarehouseObserver(this, mqttclient);

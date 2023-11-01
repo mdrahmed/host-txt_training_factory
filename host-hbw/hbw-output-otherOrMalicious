@@ -1,0 +1,52 @@
+(base) ┌─[raihan@raihan-XPS-8940]─[~/host-txt_training_factory/host-hbw]
+└──╼ $./TxtFactoryHBW-hostExe
+
+Wed Nov  1 12:19:46 2023
+F1 Unix: 1698862786
+FFF Function: _GLOBAL__sub_I_TxtHighBayWarehouseRun.cpp
+arguments:
+None
+arg_values: None
+
+Wed Nov  1 12:19:47 2023
+F1 Unix: 1698862787
+FFF Function: _ZN2ft26TxtHighBayWarehouseStorageC2Ev
+arguments:   , %"class.ft::TxtHighBayWarehouseStorage"* %this
+arg_values: -1869642704
+TxtHighBayWarehouseStorage
+
+Wed Nov  1 12:19:47 2023
+F1 Unix: 1698862787
+FFF Function: _ZN2ft26TxtHighBayWarehouseStorage16loadStorageStateEv
+arguments:   , %"class.ft::TxtHighBayWarehouseStorage"* %this
+arg_values: -1869642704
+loadStorageState
+Storage file loaded
+loadStorageState not loaded
+
+Wed Nov  1 12:19:47 2023
+F1 Unix: 1698862787
+FFF Function: _GLOBAL__sub_I_TxtHighBayWarehouseStorage.cpp
+arguments:
+None
+arg_values: None
+
+Wed Nov  1 12:19:46 2023
+F1 Unix: 1698862786
+FFF Function: main
+arguments:
+None
+arg_values: None
+main
+
+Wed Nov  1 12:19:46 2023
+F1 Unix: 1698862786
+FFF Function: _ZN2ft13mqtt_callbackC1Ev
+arguments:   , %"class.ft::mqtt_callback"* %this
+arg_values: -1317803448
+Connecting to MQTT server: 'tcp://localhost:1883'...OK
+
+Subscribing to topic: fl/vgr/do...OK
+
+^C
+

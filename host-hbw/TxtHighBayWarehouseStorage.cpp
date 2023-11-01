@@ -7,8 +7,9 @@
 
 #include "TxtHighBayWarehouseStorage.h"
 
-
+#include <iostream>
 #include <fstream>
+#include <nlohmann/json.hpp>
 
 
 namespace ft {
@@ -49,27 +50,40 @@ bool TxtHighBayWarehouseStorage::loadStorageState()
     	//load file
 		std::cout<<"Storage file loaded\n";
     }
-	std::ofstream outfile(filename.c_str());
-    if (outfile.is_open()) {
-        // Write data to the file
-        outfile << "Your data here"; // Modify this line to write your data
+	//std::ofstream outfile(filename.c_str());
+    //if (outfile.is_open()) {
+    //    // Write data to the file
+    //    outfile << "Your data here"; // Modify this line to write your data
 
-        // Close the file when done
-        outfile.close();
+    //    // Close the file when done
+    //    outfile.close();
 
-        std::cout << "Storage file written\n";
-        return true;
-    }
+    //    std::cout << "Storage file written\n";
+    //    return true;
+    //}
 	return false;
 }
 
 bool TxtHighBayWarehouseStorage::fetchContainer()
 {
 	std::cout << "storage: fetchContainer" << std::endl;
-	// if (storage.fetchContainer())
-	// {
+    
+    std::ifstream input("Data/Config.HBW.Storage-old.json");
+    nlohmann::json jsonData;
+    input >> jsonData;
+    input.close();
 
-	// }
+    // Modify the JSON data
+    jsonData["Storage"]["A2"]["state"] = 1;
+    jsonData["Storage"]["A2"]["tag_uid"] = "new_tag_uid";
+    jsonData["Storage"]["A2"]["type"] = 2;
+
+    // Write the modified JSON data back to the file
+    std::ofstream output("Data/Config.HBW.Storage.json");
+    output << jsonData.dump(4);  // You can use dump(4) for pretty formatting
+    output.close();
+
+    std::cout << "JSON file updated." << std::endl;
 	return false;
 }
 
